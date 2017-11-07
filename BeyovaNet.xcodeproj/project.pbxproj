@@ -14,6 +14,7 @@
 		57AA75E91FAFFDFC00B509DE /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A81FAFF92600B509DE /* URL+Query.swift */; };
 		57B5C0C41FB1C29A000490C0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A61FAFF92600B509DE /* Client.swift */; };
 		57B5C0C51FB1C29C000490C0 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A81FAFF92600B509DE /* URL+Query.swift */; };
+		A4546EC01FB1E5A900337FF2 /* BeyovaNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B5C0BC1FB1C1CE000490C0 /* BeyovaNet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +24,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 57AA75AD1FAFFA1800B509DE;
 			remoteInfo = "BeyovaNet iOS";
+		};
+		A4546EBD1FB1E5A300337FF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57AA75811FAFF87F00B509DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57B5C0BB1FB1C1CE000490C0;
+			remoteInfo = "BeyovaNet macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4546EC01FB1E5A900337FF2 /* BeyovaNet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +89,7 @@
 				57AA75A41FAFF92600B509DE /* Source */,
 				57AA75E11FAFFBE600B509DE /* Tests */,
 				57AA758B1FAFF88000B509DE /* Products */,
+				A4546EBF1FB1E5A900337FF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +124,13 @@
 				57AA75E41FAFFBE600B509DE /* Info-macOS.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		A4546EBF1FB1E5A900337FF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +200,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A4546EBE1FB1E5A300337FF2 /* PBXTargetDependency */,
 			);
 			name = "BeyovaNet macOS Tests";
 			productName = "BeyovaNet macOS Tests";
@@ -324,6 +342,11 @@
 			isa = PBXTargetDependency;
 			target = 57AA75AD1FAFFA1800B509DE /* BeyovaNet iOS */;
 			targetProxy = 57AA75CF1FAFFB6F00B509DE /* PBXContainerItemProxy */;
+		};
+		A4546EBE1FB1E5A300337FF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57B5C0BB1FB1C1CE000490C0 /* BeyovaNet macOS */;
+			targetProxy = A4546EBD1FB1E5A300337FF2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
