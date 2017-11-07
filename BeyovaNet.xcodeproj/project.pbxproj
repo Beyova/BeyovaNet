@@ -11,9 +11,9 @@
 		57AA75E51FAFFC2900B509DE /* BeyovaNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75E21FAFFBE600B509DE /* BeyovaNetTests.swift */; };
 		57AA75E61FAFFC2900B509DE /* BeyovaNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75E21FAFFBE600B509DE /* BeyovaNetTests.swift */; };
 		57AA75E71FAFFDF800B509DE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A61FAFF92600B509DE /* Client.swift */; };
-		57AA75E81FAFFDF900B509DE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A61FAFF92600B509DE /* Client.swift */; };
 		57AA75E91FAFFDFC00B509DE /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A81FAFF92600B509DE /* URL+Query.swift */; };
-		57AA75EA1FAFFDFC00B509DE /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A81FAFF92600B509DE /* URL+Query.swift */; };
+		57B5C0C41FB1C29A000490C0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A61FAFF92600B509DE /* Client.swift */; };
+		57B5C0C51FB1C29C000490C0 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA75A81FAFF92600B509DE /* URL+Query.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,24 +32,17 @@
 		57AA75A81FAFF92600B509DE /* URL+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Query.swift"; sourceTree = "<group>"; };
 		57AA75AE1FAFFA1800B509DE /* BeyovaNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeyovaNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AA75B61FAFFA5500B509DE /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
-		57AA75BC1FAFFAFE00B509DE /* BeyovaNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeyovaNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AA75C41FAFFB4700B509DE /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
 		57AA75C91FAFFB6F00B509DE /* BeyovaNet iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BeyovaNet iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AA75D81FAFFB9200B509DE /* BeyovaNet macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BeyovaNet macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AA75E21FAFFBE600B509DE /* BeyovaNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeyovaNetTests.swift; sourceTree = "<group>"; };
 		57AA75E31FAFFBE600B509DE /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		57AA75E41FAFFBE600B509DE /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		57B5C0BC1FB1C1CE000490C0 /* BeyovaNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeyovaNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		57AA75AA1FAFFA1800B509DE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57AA75B81FAFFAFE00B509DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -65,6 +58,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		57AA75D51FAFFB9200B509DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B5C0B81FB1C1CE000490C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				57AA75AE1FAFFA1800B509DE /* BeyovaNet.framework */,
-				57AA75BC1FAFFAFE00B509DE /* BeyovaNet.framework */,
 				57AA75C91FAFFB6F00B509DE /* BeyovaNet iOS Tests.xctest */,
 				57AA75D81FAFFB9200B509DE /* BeyovaNet macOS Tests.xctest */,
+				57B5C0BC1FB1C1CE000490C0 /* BeyovaNet.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,7 +126,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57AA75B91FAFFAFE00B509DE /* Headers */ = {
+		57B5C0B91FB1C1CE000490C0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -152,24 +152,6 @@
 			name = "BeyovaNet iOS";
 			productName = "BeyovaNet iOS";
 			productReference = 57AA75AE1FAFFA1800B509DE /* BeyovaNet.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		57AA75BB1FAFFAFE00B509DE /* BeyovaNet macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 57AA75C11FAFFAFE00B509DE /* Build configuration list for PBXNativeTarget "BeyovaNet macOS" */;
-			buildPhases = (
-				57AA75B71FAFFAFE00B509DE /* Sources */,
-				57AA75B81FAFFAFE00B509DE /* Frameworks */,
-				57AA75B91FAFFAFE00B509DE /* Headers */,
-				57AA75BA1FAFFAFE00B509DE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "BeyovaNet macOS";
-			productName = "BeyovaNet macOS";
-			productReference = 57AA75BC1FAFFAFE00B509DE /* BeyovaNet.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		57AA75C81FAFFB6F00B509DE /* BeyovaNet iOS Tests */ = {
@@ -207,6 +189,24 @@
 			productReference = 57AA75D81FAFFB9200B509DE /* BeyovaNet macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		57B5C0BB1FB1C1CE000490C0 /* BeyovaNet macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57B5C0C11FB1C1CE000490C0 /* Build configuration list for PBXNativeTarget "BeyovaNet macOS" */;
+			buildPhases = (
+				57B5C0B71FB1C1CE000490C0 /* Sources */,
+				57B5C0B81FB1C1CE000490C0 /* Frameworks */,
+				57B5C0B91FB1C1CE000490C0 /* Headers */,
+				57B5C0BA1FB1C1CE000490C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BeyovaNet macOS";
+			productName = "BeyovaNet macOS";
+			productReference = 57B5C0BC1FB1C1CE000490C0 /* BeyovaNet.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,13 +220,13 @@
 					57AA75AD1FAFFA1800B509DE = {
 						CreatedOnToolsVersion = 9.1;
 					};
-					57AA75BB1FAFFAFE00B509DE = {
-						CreatedOnToolsVersion = 9.1;
-					};
 					57AA75C81FAFFB6F00B509DE = {
 						CreatedOnToolsVersion = 9.1;
 					};
 					57AA75D71FAFFB9200B509DE = {
+						CreatedOnToolsVersion = 9.1;
+					};
+					57B5C0BB1FB1C1CE000490C0 = {
 						CreatedOnToolsVersion = 9.1;
 					};
 				};
@@ -245,7 +245,7 @@
 			targets = (
 				57AA75AD1FAFFA1800B509DE /* BeyovaNet iOS */,
 				57AA75C81FAFFB6F00B509DE /* BeyovaNet iOS Tests */,
-				57AA75BB1FAFFAFE00B509DE /* BeyovaNet macOS */,
+				57B5C0BB1FB1C1CE000490C0 /* BeyovaNet macOS */,
 				57AA75D71FAFFB9200B509DE /* BeyovaNet macOS Tests */,
 			);
 		};
@@ -253,13 +253,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		57AA75AC1FAFFA1800B509DE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57AA75BA1FAFFAFE00B509DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,6 +273,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		57B5C0BA1FB1C1CE000490C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -289,15 +289,6 @@
 			files = (
 				57AA75E91FAFFDFC00B509DE /* URL+Query.swift in Sources */,
 				57AA75E71FAFFDF800B509DE /* Client.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57AA75B71FAFFAFE00B509DE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57AA75EA1FAFFDFC00B509DE /* URL+Query.swift in Sources */,
-				57AA75E81FAFFDF900B509DE /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +305,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				57AA75E61FAFFC2900B509DE /* BeyovaNetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B5C0B71FB1C1CE000490C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57B5C0C51FB1C29C000490C0 /* URL+Query.swift in Sources */,
+				57B5C0C41FB1C29A000490C0 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +448,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info-iOS.plist";
+				INFOPLIST_FILE = "Source/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
@@ -466,49 +466,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info-iOS.plist";
+				INFOPLIST_FILE = "Source/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeyovaNet;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		57AA75C21FAFFAFE00B509DE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info-macOS.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = BeyovaNet;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		57AA75C31FAFFAFE00B509DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info-macOS.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = BeyovaNet;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -569,6 +531,46 @@
 			};
 			name = Release;
 		};
+		57B5C0C21FB1C1CE000490C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Source/Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = BeyovaNet;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		57B5C0C31FB1C1CE000490C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Source/Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = BeyovaNet;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -590,15 +592,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57AA75C11FAFFAFE00B509DE /* Build configuration list for PBXNativeTarget "BeyovaNet macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				57AA75C21FAFFAFE00B509DE /* Debug */,
-				57AA75C31FAFFAFE00B509DE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		57AA75D11FAFFB6F00B509DE /* Build configuration list for PBXNativeTarget "BeyovaNet iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -613,6 +606,15 @@
 			buildConfigurations = (
 				57AA75DE1FAFFB9200B509DE /* Debug */,
 				57AA75DF1FAFFB9200B509DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57B5C0C11FB1C1CE000490C0 /* Build configuration list for PBXNativeTarget "BeyovaNet macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57B5C0C21FB1C1CE000490C0 /* Debug */,
+				57B5C0C31FB1C1CE000490C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

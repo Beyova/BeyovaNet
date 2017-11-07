@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "57AA75BB1FAFFAFE00B509DE"
-               BuildableName = "BeyovaNet.framework"
+               BlueprintIdentifier = "57B5C0BB1FB1C1CE000490C0"
+               BuildableName = "BeyovaNet_macOS.framework"
                BlueprintName = "BeyovaNet macOS"
                ReferencedContainer = "container:BeyovaNet.xcodeproj">
             </BuildableReference>
@@ -43,8 +43,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57AA75BB1FAFFAFE00B509DE"
-            BuildableName = "BeyovaNet.framework"
+            BlueprintIdentifier = "57B5C0BB1FB1C1CE000490C0"
+            BuildableName = "BeyovaNet_macOS.framework"
             BlueprintName = "BeyovaNet macOS"
             ReferencedContainer = "container:BeyovaNet.xcodeproj">
          </BuildableReference>
@@ -66,8 +66,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57AA75BB1FAFFAFE00B509DE"
-            BuildableName = "BeyovaNet.framework"
+            BlueprintIdentifier = "57B5C0BB1FB1C1CE000490C0"
+            BuildableName = "BeyovaNet_macOS.framework"
             BlueprintName = "BeyovaNet macOS"
             ReferencedContainer = "container:BeyovaNet.xcodeproj">
          </BuildableReference>
@@ -84,8 +84,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57AA75BB1FAFFAFE00B509DE"
-            BuildableName = "BeyovaNet.framework"
+            BlueprintIdentifier = "57B5C0BB1FB1C1CE000490C0"
+            BuildableName = "BeyovaNet_macOS.framework"
             BlueprintName = "BeyovaNet macOS"
             ReferencedContainer = "container:BeyovaNet.xcodeproj">
          </BuildableReference>
