@@ -20,14 +20,16 @@ public enum HTTPMethod: String {
 }
 
 public enum ClientError: Error {
-    case coding(underlyingError: Error)
-    case network(underlyingError: Error, response: HTTPURLResponse?)
-    case http(response: HTTPURLResponse)
+    case coding(Error)
+    case network(Error,HTTPURLResponse?)
+    case http(HTTPURLResponse)
 }
 
 public class Client {
     
-    public struct _Void: Codable {}
+    public struct _Void: Codable {
+        public static let empty = _Void()
+    }
     
     public static let MIME_JSON = "application/json"
     
@@ -37,6 +39,14 @@ public class Client {
     private var _session: URLSession
     
     private var _iso8601dateCodec: Bool = false
+    
+    public init(baseURL: String) {
+        guard let url = URL(string: baseURL.hasSuffix("/") ? baseURL : baseURL + "/") else { fatalError("Invalid baseURL: \(baseURL)") }
+        _baseURL = url
+        _encoder = JSONEncoder()
+        _decoder = JSONDecoder()
+        _session = URLSession(configuration: .default)
+    }
     
     public var session: URLSession {
         return _session
@@ -56,20 +66,22 @@ public class Client {
         }
     }
     
-    public init(baseURL: String) {
-        guard let url = URL(string: baseURL) else { fatalError("Invalid baseURL: \(baseURL)") }
-        _baseURL = url
-        _encoder = JSONEncoder()
-        _decoder = JSONDecoder()
-        _session = URLSession()
+    public var headers: [String: String] = [:]
+    
+    public func cancelAll() {
+        _session.getTasksWithCompletionHandler { (tasks, uploadTasks, downloadTasks) in
+            tasks.forEach{ $0.cancel() }
+            uploadTasks.forEach{ $0.cancel() }
+            downloadTasks.forEach{ $0.cancel() }
+        }
     }
     
     public func makeRequest(relativeURL: String,
                             method: HTTPMethod,
-                            parameters: [String: Any] = [:],
-                            body:Data = Data(),
-                            contentType: String = Client.MIME_JSON) -> URLRequest {
-        guard var url = URL(string: relativeURL, relativeTo: _baseURL) else { fatalError("Invalid relativeURL: \(relativeURL)") }
+                            parameters: [String: Any],
+                            body:Data,
+                            contentType: String) -> URLRequest {
+        guard var url = relativeURL == "" ? _baseURL : URL(string: relativeURL, relativeTo: _baseURL) else { fatalError("Invalid relativeURL: \(relativeURL)") }
         if !parameters.isEmpty {
             url = url.makeURL(parameters: parameters)
         }
@@ -89,31 +101,71 @@ public class Client {
                 request.httpBody = body
             }
         }
+        self.headers.forEach{ request.setValue($1, forHTTPHeaderField: $0) }
+        
         return request
     }
     
     public func send(request: URLRequest, tokenReqiured: Bool, completionHandler: @escaping (Data?,ClientError?) -> Void) -> Self {
-        let task = _session.dataTask(with: request) { (data, response, error) in
+        let task = _session.dataTask(with: request, completionHandler: { (data, response, error) in
             let resp = response as? HTTPURLResponse
             var err: ClientError?
             if let e = error {
-                err = .network(underlyingError: e, response: resp)
+                err = .network(e,resp)
             }
             else if let r = resp, !((200..<300) ~= r.statusCode) {
-                err = .http(response: r)
+                err = .http(r)
                 if let expired = self.expired, tokenReqiured == true, r.statusCode == 401 {
                     expired()
                 }
             }
             completionHandler(data,err)
-        }
+        })
         task.resume()
         return self
     }
-
+    
+    @discardableResult
+    public func request(relativeURL: String,
+                        method: HTTPMethod,
+                        parameters: [String: Any],
+                        tokenReqiured: Bool,
+                        completionHandler: @escaping (ClientError?) -> Void) -> Self {
+        
+        return request(relativeURL: relativeURL, method: method, parameters: parameters, object: _Void.empty, tokenReqiured: tokenReqiured, completionHandler: { (_ : _Void?, error) in
+            completionHandler(error)
+        })
+    }
+    
+    @discardableResult
+    public func request<T:Encodable>(relativeURL: String,
+                                     method: HTTPMethod,
+                                     parameters: [String: Any],
+                                     object: T,
+                                     tokenReqiured: Bool,
+                                     completionHandler: @escaping (ClientError?) -> Void) -> Self {
+        
+        return request(relativeURL: relativeURL, method: method, parameters: parameters, object: object, tokenReqiured: tokenReqiured, completionHandler: { (_ : _Void?, error) in
+            completionHandler(error)
+        })
+    }
+    
+    @discardableResult
+    public func request<S:Decodable>(relativeURL: String,
+                                     method: HTTPMethod,
+                                     parameters: [String: Any],
+                                     tokenReqiured: Bool,
+                                     completionHandler: @escaping (S?,ClientError?) -> Void) -> Self {
+        
+        return request(relativeURL: relativeURL, method: method, parameters: parameters, object: _Void.empty, tokenReqiured: tokenReqiured, completionHandler: { (result: S?, error) in
+            completionHandler(result,error)
+        })
+    }
+    
+    @discardableResult
     public func request<T:Encodable,S:Decodable>(relativeURL: String,
                                                  method: HTTPMethod,
-                                                 parameters: [String: Any] = [:],
+                                                 parameters: [String: Any],
                                                  object: T,
                                                  tokenReqiured: Bool,
                                                  completionHandler: @escaping (S?,ClientError?) -> Void) -> Self {
@@ -125,19 +177,19 @@ public class Client {
             do {
                 body = try _encoder.encode(object)
             } catch let error {
-                completionHandler(nil, .coding(underlyingError: error))
+                completionHandler(nil, .coding(error))
                 return self
             }
         }
-        let request = makeRequest(relativeURL: relativeURL, method: method, parameters: parameters, body: body)
-        return send(request: request, tokenReqiured: tokenReqiured, completionHandler: {[weak self] (data, error) in
-            if let strongSelf = self, error == nil, let d = data, S.self != _Void.self {
+        let request = makeRequest(relativeURL: relativeURL, method: method, parameters: parameters, body: body, contentType: Client.MIME_JSON)
+        return send(request: request, tokenReqiured: tokenReqiured, completionHandler: { (data, error) in
+            if let d = data, error == nil, S.self != _Void.self {
                 do {
-                    let result = try strongSelf._decoder.decode(S.self, from: d)
+                    let result = try self._decoder.decode(S.self, from: d)
                     completionHandler(result, nil)
                 }
                 catch let e {
-                    completionHandler(nil, .coding(underlyingError: e))
+                    completionHandler(nil, .coding(e))
                 }
             }
             else {

@@ -16,25 +16,42 @@ class User: Codable {
 
 class BeyovaNetTests: XCTestCase {
     
-    let client = Client(baseURL: "https://httpbin.org/post")
+    var client: Client!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        client = Client(baseURL: "https://httpbin.org")
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        
+    func testPostForVoid() {
+        let expect = expectation(description: "finish")
         let user = User()
         user.name = "John"
         user.age = 10
-        client.request(relativeURL: "/", method: HTTPMethod.post, parameters: [:], object: user, tokenReqiured: false) { (result, error) in
-            
+        client.request(relativeURL: "post", method: .post,parameters: [:], object: user, tokenReqiured: false) { (result: Client._Void?, error) in
+            XCTAssertNil(error)
+            expect.fulfill()
         }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testCancelAll() {
+        var expects: [XCTestExpectation] = []
+        for i in 0..<10 {
+            expects.append(expectation(description: "call \(i)"))
+            client.request(relativeURL: "delay/10", method: .get, parameters: [:], tokenReqiured: false) { (error) in
+                if let err = error {
+                    print(err)
+                }
+                expects[i].fulfill()
+            }
+        }
+        Thread.sleep(forTimeInterval: 1)
+        client.cancelAll()
+        waitForExpectations(timeout: 10, handler: nil)
     }
 }
