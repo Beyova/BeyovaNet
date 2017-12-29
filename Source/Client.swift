@@ -45,6 +45,8 @@ open class Client {
         _baseURL = url
         _encoder = JSONEncoder()
         _decoder = JSONDecoder()
+        _encoder.dateEncodingStrategy = .iso8601
+        _decoder.dateDecodingStrategy = .iso8601
         _session = URLSession(configuration: .default)
     }
     
@@ -53,18 +55,6 @@ open class Client {
     }
     
     public var expired: (() -> Void)?
-    
-    @available(iOS 10.0, *)
-    @available(OSX 10.12, *)
-    public var iso8601dateCodec: Bool {
-        get {
-            return _iso8601dateCodec
-        }
-        set {
-            _encoder.dateEncodingStrategy = .iso8601
-            _decoder.dateDecodingStrategy = .iso8601
-        }
-    }
     
     public var headers: [String: String] = [:]
     
