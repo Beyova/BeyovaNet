@@ -25,7 +25,7 @@ public enum ClientError: Error {
     case http(HTTPURLResponse)
 }
 
-public class Client {
+open class Client {
     
     public struct _Void: Codable {
         public static let empty = _Void()
