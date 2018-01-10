@@ -15,9 +15,10 @@ Pod::Spec.new do |s|
     :submodules => true
   }
   s.default_subspecs = 'Core'
+  s.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DBNCocoaPods' }
 
   s.subspec 'Core' do |ss|    
-    ss.source_files = "Source/*.swift"
+    ss.source_files = "Sources/*.swift"
     ss.osx.deployment_target = "10.12"
     ss.ios.deployment_target = "10.0"
   end
@@ -26,6 +27,7 @@ Pod::Spec.new do |s|
     ss.source_files = "BeyovaNetPromise/Sources/*.swift"
     ss.osx.deployment_target = "10.12"
     ss.ios.deployment_target = "10.0"
+    ss.dependency 'PromiseKit/CorePromise'
     ss.dependency 'BeyovaNet/Core'
   end
 
