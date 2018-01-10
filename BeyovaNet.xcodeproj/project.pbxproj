@@ -86,7 +86,7 @@
 		57AA75801FAFF87F00B509DE = {
 			isa = PBXGroup;
 			children = (
-				57AA75A41FAFF92600B509DE /* Source */,
+				57AA75A41FAFF92600B509DE /* Sources */,
 				57AA75E11FAFFBE600B509DE /* Tests */,
 				57AA758B1FAFF88000B509DE /* Products */,
 				A4546EBF1FB1E5A900337FF2 /* Frameworks */,
@@ -104,7 +104,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57AA75A41FAFF92600B509DE /* Source */ = {
+		57AA75A41FAFF92600B509DE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				57AA75A61FAFF92600B509DE /* Client.swift */,
@@ -113,7 +113,7 @@
 				57AA75B61FAFFA5500B509DE /* Info-iOS.plist */,
 				57AA75C41FAFFB4700B509DE /* Info-macOS.plist */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		57AA75E11FAFFBE600B509DE /* Tests */ = {
@@ -471,7 +471,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Source/Info-iOS.plist";
+				INFOPLIST_FILE = "Sources/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
@@ -489,7 +489,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Source/Info-iOS.plist";
+				INFOPLIST_FILE = "Sources/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
@@ -563,7 +563,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Source/Info-macOS.plist";
+				INFOPLIST_FILE = "Sources/Info-macOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";
@@ -583,7 +583,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Source/Info-macOS.plist";
+				INFOPLIST_FILE = "Sources/Info-macOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beyova.${PRODUCT_NAME:rfc1034identifier}";

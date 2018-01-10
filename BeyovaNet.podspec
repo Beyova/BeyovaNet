@@ -9,7 +9,11 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.osx.deployment_target = "10.12"
   s.ios.deployment_target = "10.0"
-  s.source   = { :git => "https://github.com/Beyova/BeyovaNet.git", :tag => s.version }
+  s.source   = { 
+    :git => "https://github.com/Beyova/BeyovaNet.git", 
+    :tag => s.version,
+    :submodules => true
+  }
   s.default_subspecs = 'Core'
 
   s.subspec 'Core' do |ss|    
