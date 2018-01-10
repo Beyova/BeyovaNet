@@ -1,0 +1,3 @@
+[submodule "BeyovaNetPromise"]
+	path = BeyovaNetPromise
+	url = git@github.com:Beyova/BeyovaNetPromise.git
