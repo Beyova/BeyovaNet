@@ -34,19 +34,16 @@ open class Client {
     public static let MIME_JSON = "application/json"
     
     private var _baseURL: URL
-    private var _encoder: JSONEncoder
-    private var _decoder: JSONDecoder
-    private var _session: URLSession
+    public var _session: URLSession
     
-    private var _iso8601dateCodec: Bool = false
+    public let encoder: JSONEncoder
+    public let decoder: JSONDecoder
     
     public init(baseURL: String) {
         guard let url = URL(string: baseURL.hasSuffix("/") ? baseURL : baseURL + "/") else { fatalError("Invalid baseURL: \(baseURL)") }
         _baseURL = url
-        _encoder = JSONEncoder()
-        _decoder = JSONDecoder()
-        _encoder.dateEncodingStrategy = .iso8601
-        _decoder.dateDecodingStrategy = .iso8601
+        self.encoder = JSONEncoder()
+        self.decoder = JSONDecoder()
         _session = URLSession(configuration: .default)
     }
     
@@ -165,7 +162,7 @@ open class Client {
         }
         else {
             do {
-                body = try _encoder.encode(object)
+                body = try self.encoder.encode(object)
             } catch let error {
                 completionHandler(nil, .coding(error))
                 return self
@@ -175,7 +172,7 @@ open class Client {
         return send(request: request, tokenReqiured: tokenReqiured, completionHandler: { (data, error) in
             if let d = data, error == nil, S.self != _Void.self {
                 do {
-                    let result = try self._decoder.decode(S.self, from: d)
+                    let result = try self.decoder.decode(S.self, from: d)
                     completionHandler(result, nil)
                 }
                 catch let e {
