@@ -20,7 +20,7 @@ public enum HTTPMethod: String {
 }
 
 public enum ClientError: Error {
-    case coding(Error)
+    case coding(Error?)
     case network(Error,HTTPURLResponse?)
     case http(HTTPURLResponse)
 }
@@ -171,18 +171,82 @@ open class Client {
         let request = makeRequest(relativeURL: relativeURL, method: method, parameters: parameters, body: body, contentType: Client.MIME_JSON)
         return send(request: request, tokenReqiured: tokenReqiured, completionHandler: { (data, error) in
             if let d = data, error == nil, S.self != _Void.self {
+                let result: S?
                 do {
-                    let result = try self.decoder.decode(S.self, from: d)
-                    completionHandler(result, nil)
+                    result = try self.decode(data: d)
                 }
                 catch let e {
                     completionHandler(nil, .coding(e))
+                    return
                 }
+                completionHandler(result, nil)
             }
             else {
                 completionHandler(nil, error)
             }
         })
+    }
+    
+    private func decode<T:Decodable>(data: Data) throws -> T? {
+        do {
+            return try self.decoder.decode(T.self, from: data)
+        } catch let error as DecodingError {
+            let value = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            switch value {
+            case is NSNull:
+                return nil
+            case let val as String:
+                if String.self == T.self {
+                    return (val as! T)
+                }
+            case let val as NSNumber:
+                if T.self == NSNumber.self {
+                    return (val as! T)
+                }
+                else if T.self == Int.self {
+                    return (val.intValue as! T)
+                }
+                else if T.self == Int32.self {
+                    return (val.int32Value as! T)
+                }
+                else if T.self == Int64.self {
+                    return (val.int64Value as! T)
+                }
+                else if T.self == Bool.self {
+                    return (val.boolValue as! T)
+                }
+                else if T.self == Float.self || T.self == Float32.self {
+                    return (val.floatValue as! T)
+                }
+                else if T.self == Double.self || T.self == Float64.self {
+                    return (val.doubleValue as! T)
+                }
+                else if T.self == Int8.self {
+                    return (val.int8Value as! T)
+                }
+                else if T.self == Int16.self {
+                    return (val.int16Value as! T)
+                }
+                else if T.self == UInt8.self {
+                    return (val.uint8Value as! T)
+                }
+                else if T.self == UInt16.self {
+                    return (val.uint16Value as! T)
+                }
+                else if T.self == UInt.self {
+                    return (val.uintValue as! T)
+                }
+                else if T.self == UInt32.self {
+                    return (val.uint32Value as! T)
+                }
+                else if T.self == UInt64.self {
+                    return (val.uint64Value as! T)
+                }
+            default:
+                break
+            }
+            throw error
+        }
     }
 }
 

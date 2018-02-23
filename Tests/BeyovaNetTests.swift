@@ -14,6 +14,10 @@ class User: Codable {
     var age: Int = 0
 }
 
+class Result: Codable {
+    var url: String?
+}
+
 class BeyovaNetTests: XCTestCase {
     
     var client: Client!
@@ -34,6 +38,19 @@ class BeyovaNetTests: XCTestCase {
         user.age = 10
         client.request(relativeURL: "post", method: .post,parameters: [:], object: user, tokenReqiured: false) { (result: Client._Void?, error) in
             XCTAssertNil(error)
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testPost() {
+        let expect = expectation(description: "finish")
+        let user = User()
+        user.name = "John"
+        user.age = 10
+        client.request(relativeURL: "post", method: .post,parameters: [:], object: user, tokenReqiured: false) { (result: Result?, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(result?.url)
             expect.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)
