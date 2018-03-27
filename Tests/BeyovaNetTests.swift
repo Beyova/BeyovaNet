@@ -25,6 +25,9 @@ class BeyovaNetTests: XCTestCase {
     override func setUp() {
         super.setUp()
         client = Client(baseURL: "https://httpbin.org")
+        client.loggers.append { (request, response, error) in
+            
+        }
     }
     
     override func tearDown() {

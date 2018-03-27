@@ -55,6 +55,8 @@ open class Client {
     
     public var headers: [String: String] = [:]
     
+    public var loggers: [(_ request: URLRequest, _ response: HTTPURLResponse?, _ error: Error?) -> Void] = []
+    
     public func cancelAll() {
         _session.getTasksWithCompletionHandler { (tasks, uploadTasks, downloadTasks) in
             tasks.forEach{ $0.cancel() }
@@ -94,8 +96,18 @@ open class Client {
     }
     
     public func send(request: URLRequest, tokenReqiured: Bool, completionHandler: @escaping (Data?,ClientError?) -> Void) -> Self {
+        let loggers = self.loggers
         let task = _session.dataTask(with: request, completionHandler: { (data, response, error) in
             let resp = response as? HTTPURLResponse
+            
+            if loggers.count > 0 {
+                DispatchQueue.main.async {
+                    for logger in loggers {
+                        logger(request, resp, error)
+                    }
+                }
+            }
+
             var err: ClientError?
             if let e = error {
                 err = .network(e,resp)
@@ -103,7 +115,9 @@ open class Client {
             else if let r = resp, !((200..<300) ~= r.statusCode) {
                 err = .http(r)
                 if let expired = self.expired, tokenReqiured == true, r.statusCode == 401 {
-                    expired()
+                    DispatchQueue.main.async {
+                        expired()
+                    }
                 }
             }
             completionHandler(data,err)
