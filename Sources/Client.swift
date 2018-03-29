@@ -55,7 +55,7 @@ open class Client {
     
     public var headers: [String: String] = [:]
     
-    public var loggers: [(_ request: URLRequest, _ response: HTTPURLResponse?, _ error: Error?) -> Void] = []
+    public var loggers: [(_ request: URLRequest,_ data: Data?, _ response: HTTPURLResponse?, _ error: Error?) -> Void] = []
     
     public func cancelAll() {
         _session.getTasksWithCompletionHandler { (tasks, uploadTasks, downloadTasks) in
@@ -103,7 +103,7 @@ open class Client {
             if loggers.count > 0 {
                 DispatchQueue.main.async {
                     for logger in loggers {
-                        logger(request, resp, error)
+                        logger(request, data, resp, error)
                     }
                 }
             }
