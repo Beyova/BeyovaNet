@@ -95,6 +95,7 @@ open class Client {
         return request
     }
     
+    @discardableResult
     public func send(request: URLRequest, tokenReqiured: Bool, completionHandler: @escaping (Data?,ClientError?) -> Void) -> Self {
         let loggers = self.loggers
         let task = _session.dataTask(with: request, completionHandler: { (data, response, error) in
