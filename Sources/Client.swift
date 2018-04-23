@@ -51,6 +51,8 @@ open class Client {
         return _session
     }
     
+    public var timeout: TimeInterval = 60.0
+    
     public var expired: (() -> Void)?
     
     public var headers: [String: String] = [:]
@@ -69,12 +71,13 @@ open class Client {
                             method: HTTPMethod,
                             parameters: [String: Any],
                             body:Data,
-                            contentType: String) -> URLRequest {
+                            contentType: String,
+                            timeout: TimeInterval) -> URLRequest {
         guard var url = relativeURL == "" ? _baseURL : URL(string: relativeURL, relativeTo: _baseURL) else { fatalError("Invalid relativeURL: \(relativeURL)") }
         if !parameters.isEmpty {
             url = url.makeURL(parameters: parameters)
         }
-        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 60)
+        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: timeout)
         request.httpMethod = method.rawValue
         request.setValue(Client.MIME_JSON, forHTTPHeaderField: "Accept")
         request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
@@ -183,7 +186,7 @@ open class Client {
                 return self
             }
         }
-        let request = makeRequest(relativeURL: relativeURL, method: method, parameters: parameters, body: body, contentType: Client.MIME_JSON)
+        let request = makeRequest(relativeURL: relativeURL, method: method, parameters: parameters, body: body, contentType: Client.MIME_JSON, timeout: self.timeout)
         return send(request: request, tokenReqiured: tokenReqiured, completionHandler: { (data, error) in
             if let d = data, error == nil, S.self != _Void.self {
                 let result: S?
