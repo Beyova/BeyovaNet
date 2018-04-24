@@ -57,7 +57,7 @@ open class Client {
     
     public var headers: [String: String] = [:]
     
-    public var loggers: [(_ request: URLRequest,_ data: Data?, _ response: HTTPURLResponse?, _ error: Error?) -> Void] = []
+    public var loggers: [(_ request: URLRequest, _ response: HTTPURLResponse?,_ start: Date, _ data: Data?, _ error: Error?) -> Void] = []
     
     public func cancelAll() {
         _session.getTasksWithCompletionHandler { (tasks, uploadTasks, downloadTasks) in
@@ -101,13 +101,14 @@ open class Client {
     @discardableResult
     public func send(request: URLRequest, tokenReqiured: Bool, completionHandler: @escaping (Data?,ClientError?) -> Void) -> Self {
         let loggers = self.loggers
+        let start = Date()
         let task = _session.dataTask(with: request, completionHandler: { (data, response, error) in
             let resp = response as? HTTPURLResponse
             
             if loggers.count > 0 {
                 DispatchQueue.main.async {
                     for logger in loggers {
-                        logger(request, data, resp, error)
+                        logger(request, resp, start, data, error)
                     }
                 }
             }
